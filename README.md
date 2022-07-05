@@ -2,6 +2,7 @@
 _Projektarbeit vom Team PlantPowerdProgrammers_
 
 **Ziele:** 
+
 1)
 -   Sortierung und Tabellarische Auflistung aller Baumgattungen/-arten (lat. Name)
 -   Zählung der Gattungen/ Arten  

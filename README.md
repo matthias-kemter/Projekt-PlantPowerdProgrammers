@@ -13,8 +13,8 @@ _Projektarbeit vom Team PlantPowerdProgrammers_
 -   Darstellung der Pflanzdaten in einem Diagramm (Anzahl/Jahr)
 
 3)
--   _wird später bearbeitet bzw. verändert wenn Ergebnisse der vorherigen Aufgaben vorliegen 
-Bereich der ältesten 50 Bäume ermitteln (Mittelpunkt/ Umkreis)_
+-   _(wird später bearbeitet bzw. verändert wenn Ergebnisse der vorherigen Aufgaben vorliegen)_ 
+ Bereich der ältesten 50 Bäume ermitteln (Mittelpunkt/ Umkreis)
 
 
 

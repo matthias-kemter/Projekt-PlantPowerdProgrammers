@@ -12,7 +12,9 @@ _Projektarbeit vom Team PlantPowerdProgrammers_
 -   Darstellung der 50 ältesten Bäume auf einer Karte
 -   Darstellung der Pflanzdaten in einem Diagramm (Anzahl/Jahr)
 
--   _wird später bearbeitet bzw. verändert wenn Ergebnisse der vorherigen Aufgaben vorliegen (Bereich der ältesten 50 Bäume ermitteln (Mittelpunkt/ Umkreis))_
+3)
+-   _wird später bearbeitet bzw. verändert wenn Ergebnisse der vorherigen Aufgaben vorliegen 
+Bereich der ältesten 50 Bäume ermitteln (Mittelpunkt/ Umkreis)_
 
 
 

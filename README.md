@@ -6,7 +6,7 @@ _Projektarbeit vom Team PlantPowerdProgrammers_
 -   Sortierung und Tabellarische Auflistung aller Baumgattungen/-arten (lat. Name)
 -   Zählung der Gattungen/ Arten  
 -   Darstellung der Gattungen auf je einer Karte
-    -------------------------------------
+    
 -   Sortierung nach Pflanzdatum
 -   Darstellung der 50 ältesten Bäume auf einer Karte
 -   Darstellung der Pflanzdaten in einem Diagramm (Anzahl/Jahr)

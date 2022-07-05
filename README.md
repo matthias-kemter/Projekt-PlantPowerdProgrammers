@@ -11,7 +11,7 @@ _Projektarbeit vom Team PlantPowerdProgrammers_
 -   Darstellung der 50 ältesten Bäume auf einer Karte
 -   Darstellung der Pflanzdaten in einem Diagramm (Anzahl/Jahr)
 
--   Mittelpunkt der ältesten 50 Bäume ermitteln --> "Historischer Baumstadtkern"
+-   Bereich der ältesten 50 Bäume ermitteln
 
 
 

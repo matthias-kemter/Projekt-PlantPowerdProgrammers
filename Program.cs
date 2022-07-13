@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 
 
 namespace Baumprojekt
@@ -68,6 +70,14 @@ namespace Baumprojekt
                     System.Console.WriteLine("Hello World!");
                 }
             }
+
+            BaumListe.Sort
+            (
+                delegate(Baeume x, Baeume y) 
+                {
+                    return x.Pflanzdatum.CompareTo(y.Pflanzdatum);
+                }
+            );
         }
     }
 }

@@ -70,7 +70,7 @@ namespace Baumprojekt
                     System.Console.WriteLine("Hello World!");
                 }
             }
-
+            //Sortieren
             BaumListe.Sort
             (
                 delegate(Baeume x, Baeume y) 

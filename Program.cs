@@ -34,7 +34,22 @@ namespace Baumprojekt
                 Baumnummer = Convert.ToInt16(csvEntries[5]);
                 Baumart = csvEntries[6];
                 BaumartZusatz = csvEntries[7];
+                // Hier kann man zwar noch Pflanzdatum = Convert.ToInt32(csvEntries[8]; schreiben, aber man bekommt auch so nur "0" als Ausgabe)
                 Pflanzdatum = csvEntries[8];
+                try
+                {
+                    int pflanzdatumInt = Convert.ToInt32(Pflanzdatum);
+                }
+                catch (FormatException)
+                {
+                    // Warum bekomme ich hier eine Bad Format Exception wenn ich einen String z.B."2009" zu einem Int32 umwandeln möchte?
+                    System.Console.WriteLine("Bad Format");
+                }
+                catch (OverflowException)
+                {
+                    // Selbe Frage hier: Warum Overflow?
+                    System.Console.WriteLine("Overflow");
+                }
             }
             catch (FormatException)
             {
@@ -49,21 +64,6 @@ namespace Baumprojekt
         // ToString() wird für eine übersichtliche Ausgabe überschrieben  
         public override string ToString()
         {
-            try
-            {
-                int pflanzdatumInt = Convert.ToInt32(Pflanzdatum);
-            }
-            catch (FormatException)
-            {
-                // Warum bekomme ich hier eine Bad Format Exception wenn ich einen String z.B."2009" zu einem Int32 umwandeln möchte?
-                System.Console.WriteLine("Bad Format");
-            }
-            catch (OverflowException)
-            {
-                // Selbe Frage hier: Warum Overflow?
-                System.Console.WriteLine("Overflow");
-            }
-            
             // Formatierung der Konsolenausgabe als Liste
             return  "X-Koordinate: " + X_Koordinate + 
                     "\nY-Koordinate: " + Y_Koordinate + 

@@ -75,12 +75,42 @@ namespace Baumprojekt
                     "\nPflanzdatumInt: " + pflanzdatumInt +
                     "\nPflanzdatum: " + Pflanzdatum;
         }
+        
     }
+
     class Program
-    {    static void Main(string[] args)
+    
+    {    
+        //sortiereung als test als fütr baumnummer
+        static List<Baeume> quicksortBaumnummer(List<Baeume> list)
+        {
+            if (list.Count <= 1) return list;
+            int pivotPosition = list.Count / 2;
+            int pivotValue = list[pivotPosition].Baumnummer;
+            Baeume pivot = list[pivotPosition];
+            list.RemoveAt(pivotPosition);
+            List<Baeume> smaller = new List<Baeume>();
+            List<Baeume> greater = new List<Baeume>();
+            foreach (Baeume item in list)
+            {
+                if (item.Baumnummer < pivotValue)
+                {
+                    smaller.Add(item);
+                }
+                else
+                {
+                    greater.Add(item);
+                }
+            }
+            List<Baeume> sorted = quicksortBaumnummer(smaller); 
+            sorted.Add(pivot);
+            sorted.AddRange(quicksortBaumnummer(greater));
+            return sorted;
+        }
+        static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"baeume_kurz100.csv";
+            string pathBaeumeCsv = @"Baum10.csv";
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();
@@ -95,7 +125,7 @@ namespace Baumprojekt
                 // Daten in Liste schreiben
                 try
                 {
-                    for (int i = 1; i <= 101; i++)
+                    for (int i = 1; i <= 10; i++)
                     {
                         BaumListe.Add(new Baeume(baeumeAsCsvString[i]));
                     }
@@ -106,6 +136,15 @@ namespace Baumprojekt
                 }
 
                 // Daten ausgeben lassen mit ToString()
+                foreach (Baeume aBaum in BaumListe)
+                {
+                    System.Console.WriteLine("______________________\nBaumdaten:\n");
+                    System.Console.WriteLine(aBaum.ToString());
+                }
+                
+                System.Console.WriteLine("Now Sorted#####################################################\n");
+                BaumListe = quicksortBaumnummer(BaumListe);
+
                 foreach (Baeume aBaum in BaumListe)
                 {
                     System.Console.WriteLine("______________________\nBaumdaten:\n");

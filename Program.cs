@@ -75,11 +75,9 @@ namespace Baumprojekt
                     "\nPflanzdatumInt: " + pflanzdatumInt +
                     "\nPflanzdatum: " + Pflanzdatum;
         }
-        
     }
 
     class Program
-    
     {    
         //sortiereung als test als fütr baumnummer
         static List<Baeume> quicksortBaumnummer(List<Baeume> list)
@@ -107,10 +105,38 @@ namespace Baumprojekt
             sorted.AddRange(quicksortBaumnummer(greater));
             return sorted;
         }
+
+        //sortiereung als test als für Pflanzdatum
+        /*
+        static List<Baeume> quicksortPflanzdatum(List<Baeume> list)
+        {
+            if (list.Count <= 1) return list;
+            int pivotPosition = list.Count / 2;
+            int pivotValue = list[pivotPosition].Pflanzdatum;
+            Baeume pivot = list[pivotPosition];
+            list.RemoveAt(pivotPosition);
+            List<Baeume> smaller = new List<Baeume>();
+            List<Baeume> greater = new List<Baeume>();
+            foreach (Baeume item in list)
+            {
+                if (item.Pflanzdatum < pivotValue)
+                {
+                    smaller.Add(item);
+                }
+                else
+                {
+                    greater.Add(item);
+                }
+            }
+            List<Baeume> sorted = quicksortPflanzdatum(smaller); 
+            sorted.Add(pivot);
+            sorted.AddRange(quicksortPflanzdatum(greater));
+            return sorted;
+        }*/
         static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"Baum10.csv";
+            string pathBaeumeCsv = @"Baum10.csv"; //für Bäume 100: "./csv/baeume_kurz100.csv" 
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();
@@ -125,7 +151,7 @@ namespace Baumprojekt
                 // Daten in Liste schreiben
                 try
                 {
-                    for (int i = 1; i <= 10; i++)
+                    for (int i = 1; i <= 101; i++)
                     {
                         BaumListe.Add(new Baeume(baeumeAsCsvString[i]));
                     }
@@ -134,20 +160,28 @@ namespace Baumprojekt
                 {
                     System.Console.WriteLine("Out Of Range");
                 }
-
+                int bc1 = 1; //Nummer zur Kontrolle der Ausgabe
                 // Daten ausgeben lassen mit ToString()
                 foreach (Baeume aBaum in BaumListe)
                 {
-                    System.Console.WriteLine("______________________\nBaumdaten:\n");
+                    System.Console.WriteLine("______________________\nBaumdaten:");
+                    System.Console.WriteLine("### {0} ###",bc1);
+                    bc1 ++;
                     System.Console.WriteLine(aBaum.ToString());
                 }
                 
-                System.Console.WriteLine("Now Sorted#####################################################\n");
+                System.Console.WriteLine("\n #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=NOW SORTED=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#\n");
+                
+                //Aufruf sort-function
                 BaumListe = quicksortBaumnummer(BaumListe);
 
+                int bc2 = 1; //Nummer zur Kontrolle der Ausgabe
                 foreach (Baeume aBaum in BaumListe)
                 {
-                    System.Console.WriteLine("______________________\nBaumdaten:\n");
+                    if (bc2>5){break;} //Abbrechen der Auflistung nach den ersten 5 Elementen
+                    System.Console.WriteLine("______________________\nBaumdaten:");
+                    System.Console.WriteLine("### {0} ###",bc2);
+                    bc2 ++;
                     System.Console.WriteLine(aBaum.ToString());
                 }
             }

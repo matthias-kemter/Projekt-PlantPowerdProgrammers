@@ -3,20 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-
 namespace Baumprojekt
 {
     class Baeume 
-    {
-        public static double X_Koordinate {get; set;}
-        public static double Y_Koordinate {get; set;}
-        public static int ObjektID {get; set;}
-        public static int ID {get; set;}
-        public static string ?Objektschluessel {get; set;}
-        public static int Baumnummer {get; set;}
-        public static string ?Baumart {get; set;}
-        public static string ?BaumartZusatz {get; set;}
-        public static int Pflanzdatum {get; set;}
+    {   //Anlegen der Baumelemente (Properties)
+        public double X_Koordinate {get; set;}
+        public double Y_Koordinate {get; set;}
+        public int ObjektID {get; set;}
+        public int ID {get; set;}
+        public string ?Objektschluessel {get; set;}
+        public string ?Baumnummer {get; set;}
+        public string ?BaumartLatein {get; set;}
+        public string ?BaumartDeutsch {get; set;}
+        public int Pflanzdatum {get; set;}
 
         public Baeume() { }
         public Baeume(string csvString)
@@ -32,9 +31,17 @@ namespace Baumprojekt
                 ObjektID = Convert.ToInt16(csvEntries[2]);
                 ID = Convert.ToInt32(csvEntries[3]);
                 Objektschluessel = csvEntries[4];
-                Baumnummer = Convert.ToInt16(csvEntries[5]);
-                Baumart = csvEntries[6];
-                BaumartZusatz = csvEntries[7];
+                Baumnummer = csvEntries[5];
+                BaumartLatein = csvEntries[6];
+                if (BaumartLatein == null)
+                {
+                    BaumartLatein = "Ignotus";
+                }
+                BaumartDeutsch = csvEntries[7];
+                if (BaumartDeutsch == null)
+                {
+                    BaumartDeutsch = "Unbekannt";
+                }
                 Pflanzdatum = Convert.ToInt32(csvEntries[8]);
             }
             catch (FormatException)
@@ -57,42 +64,14 @@ namespace Baumprojekt
                     "\nID: " + ID +
                     "\nObjektschlüssel: " + Objektschluessel +
                     "\nBaumnummer: " + Baumnummer +
-                    "\nBaumart: " + Baumart + ", " + BaumartZusatz +
+                    "\nBaumart: " + BaumartLatein + ", " + BaumartDeutsch +
                     "\nPflanzdatum: " + Pflanzdatum;
         }
     }
 
     class Program
     {    
-        //sortiereung als test als fütr baumnummer
-        static List<Baeume> quicksortBaumnummer(List<Baeume> list)
-        {
-            if (list.Count <= 1) return list;
-            int pivotPosition = list.Count / 2;
-            int pivotValue = list[pivotPosition].Baumnummer;
-            Baeume pivot = list[pivotPosition];
-            list.RemoveAt(pivotPosition);
-            List<Baeume> smaller = new List<Baeume>();
-            List<Baeume> greater = new List<Baeume>();
-            foreach (Baeume item in list)
-            {
-                if (item.Baumnummer < pivotValue)
-                {
-                    smaller.Add(item);
-                }
-                else
-                {
-                    greater.Add(item);
-                }
-            }
-            List<Baeume> sorted = quicksortBaumnummer(smaller); 
-            sorted.Add(pivot);
-            sorted.AddRange(quicksortBaumnummer(greater));
-            return sorted;
-        }
-
-        //sortiereung als test als für Pflanzdatum
-        /*
+        //Sortiereung mit Quicksort  für Pflanzdatum
         static List<Baeume> quicksortPflanzdatum(List<Baeume> list)
         {
             if (list.Count <= 1) return list;
@@ -117,16 +96,16 @@ namespace Baumprojekt
             sorted.Add(pivot);
             sorted.AddRange(quicksortPflanzdatum(greater));
             return sorted;
-        }*/
+        }
         static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"baeume_kurz100.csv";
-
+            string pathBaeumeCsv = @"./csv/baeume.csv"; //./csv/baeume.csv
+            //Anzahl der Bäume in Csv
+            int anzahlInListe = 49886;
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();
-
             
             // BaumListe mit Einträgen aus der csv füllen
             if(File.Exists(pathBaeumeCsv))
@@ -137,7 +116,7 @@ namespace Baumprojekt
                 // Daten in Liste schreiben
                 try
                 {
-                    for (int i = 1; i <= 49886; i++)
+                    for (int i = 1; i <= anzahlInListe; i++)
 
                     {
                         BaumListe.Add(new Baeume(baeumeAsCsvString[i]));
@@ -161,12 +140,12 @@ namespace Baumprojekt
                 System.Console.WriteLine("\n #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=NOW SORTED=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#\n");
                 
                 //Aufruf sort-function
-                BaumListe = quicksortBaumnummer(BaumListe);
+                BaumListe = quicksortPflanzdatum(BaumListe);
 
                 int bc2 = 1; //Nummer zur Kontrolle der Ausgabe
                 foreach (Baeume aBaum in BaumListe)
                 {
-                    if (bc2>5){break;} //Abbrechen der Auflistung nach den ersten 5 Elementen
+                    if (bc2>50){break;} //Abbrechen der Auflistung nach den ersten 500 Elementen
                     System.Console.WriteLine("______________________\nBaumdaten:");
                     System.Console.WriteLine("### {0} ###",bc2);
                     bc2 ++;

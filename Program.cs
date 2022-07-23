@@ -12,7 +12,7 @@ namespace Baumprojekt
         public int ObjektID {get; set;}
         public int ID {get; set;}
         public string ?Objektschluessel {get; set;}
-        public string Baumnummer {get; set;}
+        public string ?Baumnummer {get; set;}
         public string ?BaumartLatein {get; set;}
         public string ?BaumartDeutsch {get; set;}
         public int Pflanzdatum {get; set;}

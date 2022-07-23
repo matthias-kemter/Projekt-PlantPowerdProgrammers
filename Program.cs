@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-
 namespace Baumprojekt
 {
     class Baeume 
@@ -93,14 +92,12 @@ namespace Baumprojekt
         static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"./csv/baeume.csv";
+            string pathBaeumeCsv = @"./csv/baeume.csv"; //./csv/baeume.csv
             //Anzahl der Bäume in Csv
             int anzahlInListe = 49886;
 
-
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();
-
             
             // BaumListe mit Einträgen aus der csv füllen
             if(File.Exists(pathBaeumeCsv))

@@ -7,16 +7,16 @@ using System.IO;
 namespace Baumprojekt
 {
     class Baeume 
-    {
-        public static double X_Koordinate {get; set;}
-        public static double Y_Koordinate {get; set;}
-        public static int ObjektID {get; set;}
-        public static int ID {get; set;}
-        public static string ?Objektschluessel {get; set;}
-        public static int Baumnummer {get; set;}
-        public static string ?Baumart {get; set;}
-        public static string ?BaumartZusatz {get; set;}
-        public static int Pflanzdatum {get; set;}
+    {   //Anlegen der Baumelemente
+        public double X_Koordinate {get; set;}
+        public double Y_Koordinate {get; set;}
+        public int ObjektID {get; set;}
+        public int ID {get; set;}
+        public string ?Objektschluessel {get; set;}
+        public int Baumnummer {get; set;}
+        public string ?Baumart {get; set;}
+        public string ?BaumartZusatz {get; set;}
+        public int Pflanzdatum {get; set;}
 
         public Baeume() { }
         public Baeume(string csvString)
@@ -64,35 +64,7 @@ namespace Baumprojekt
 
     class Program
     {    
-        //sortiereung als test als fütr baumnummer
-        static List<Baeume> quicksortBaumnummer(List<Baeume> list)
-        {
-            if (list.Count <= 1) return list;
-            int pivotPosition = list.Count / 2;
-            int pivotValue = list[pivotPosition].Baumnummer;
-            Baeume pivot = list[pivotPosition];
-            list.RemoveAt(pivotPosition);
-            List<Baeume> smaller = new List<Baeume>();
-            List<Baeume> greater = new List<Baeume>();
-            foreach (Baeume item in list)
-            {
-                if (item.Baumnummer < pivotValue)
-                {
-                    smaller.Add(item);
-                }
-                else
-                {
-                    greater.Add(item);
-                }
-            }
-            List<Baeume> sorted = quicksortBaumnummer(smaller); 
-            sorted.Add(pivot);
-            sorted.AddRange(quicksortBaumnummer(greater));
-            return sorted;
-        }
-
-        //sortiereung als test als für Pflanzdatum
-        /*
+        //Sortiereung mit Quicksort  für Pflanzdatum
         static List<Baeume> quicksortPflanzdatum(List<Baeume> list)
         {
             if (list.Count <= 1) return list;
@@ -117,11 +89,13 @@ namespace Baumprojekt
             sorted.Add(pivot);
             sorted.AddRange(quicksortPflanzdatum(greater));
             return sorted;
-        }*/
+        }
         static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"baeume_kurz100.csv";
+            string pathBaeumeCsv = @"./csv/baeume.csv";
+            //Anzahl der Bäume in Csv
+            int anzahlInListe = 49886;
 
 
             // Liste von Bäumen erstellen
@@ -137,7 +111,7 @@ namespace Baumprojekt
                 // Daten in Liste schreiben
                 try
                 {
-                    for (int i = 1; i <= 49886; i++)
+                    for (int i = 1; i <= anzahlInListe; i++)
 
                     {
                         BaumListe.Add(new Baeume(baeumeAsCsvString[i]));
@@ -161,7 +135,7 @@ namespace Baumprojekt
                 System.Console.WriteLine("\n #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=NOW SORTED=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#\n");
                 
                 //Aufruf sort-function
-                BaumListe = quicksortBaumnummer(BaumListe);
+                BaumListe = quicksortPflanzdatum(BaumListe);
 
                 int bc2 = 1; //Nummer zur Kontrolle der Ausgabe
                 foreach (Baeume aBaum in BaumListe)

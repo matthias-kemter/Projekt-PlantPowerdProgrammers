@@ -32,19 +32,15 @@ namespace Baumprojekt
                 ID = Convert.ToInt32(csvEntries[3]);
                 Objektschluessel = csvEntries[4];
                 Baumnummer = Convert.ToInt16(csvEntries[5]);
+                BaumartLatein = csvEntries[6];
                 if (BaumartLatein == null)
                 {
                     BaumartLatein = "Ignotus";
-                }else
-                {
-                    BaumartLatein = csvEntries[6];
                 }
+                BaumartDeutsch = csvEntries[7];
                 if (BaumartDeutsch == null)
                 {
                     BaumartDeutsch = "Unbekannt";
-                }else
-                {
-                    BaumartDeutsch = csvEntries[7];
                 }
                 Pflanzdatum = Convert.ToInt32(csvEntries[8]);
             }

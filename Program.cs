@@ -6,7 +6,7 @@ using System.IO;
 namespace Baumprojekt
 {
     class Baeume 
-    {   //Anlegen der Baumelemente
+    {   //Anlegen der Baumelemente (Properties)
         public double X_Koordinate {get; set;}
         public double Y_Koordinate {get; set;}
         public int ObjektID {get; set;}

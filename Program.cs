@@ -137,7 +137,7 @@ namespace Baumprojekt
                 int bc2 = 1; //Nummer zur Kontrolle der Ausgabe
                 foreach (Baeume aBaum in BaumListe)
                 {
-                    if (bc2>5){break;} //Abbrechen der Auflistung nach den ersten 5 Elementen
+                    if (bc2>50){break;} //Abbrechen der Auflistung nach den ersten 50 Elementen
                     System.Console.WriteLine("______________________\nBaumdaten:");
                     System.Console.WriteLine("### {0} ###",bc2);
                     bc2 ++;

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 
 
 namespace Baumprojekt
@@ -14,8 +16,8 @@ namespace Baumprojekt
         public int Baumnummer {get; set;}
         public string ?Baumart {get; set;}
         public string ?BaumartZusatz {get; set;}
-        public string ?Pflanzdatum {get; set;}
-        public int pflanzdatumInt {get; set;}
+        public string ?PflanzdatumPre {get; set;}
+        public int Pflanzdatum {get; set;}
 
         public Baeume() { }
         public Baeume(string csvString)
@@ -35,21 +37,23 @@ namespace Baumprojekt
                 Baumart = csvEntries[6];
                 BaumartZusatz = csvEntries[7];
                 // Hier kann man zwar noch Pflanzdatum = Convert.ToInt32(csvEntries[8]; schreiben, aber man bekommt auch so nur "0" als Ausgabe)
-                Pflanzdatum = csvEntries[8];
-                try
-                {
-                    int pflanzdatumInt = Convert.ToInt32(Pflanzdatum);
-                }
-                catch (FormatException)
-                {
-                    // Warum bekomme ich hier eine Bad Format Exception wenn ich einen String z.B."2009" zu einem Int32 umwandeln möchte?
-                    System.Console.WriteLine("Bad Format");
-                }
-                catch (OverflowException)
-                {
-                    // Selbe Frage hier: Warum Overflow?
-                    System.Console.WriteLine("Overflow");
-                }
+                PflanzdatumPre = csvEntries[8];
+                Pflanzdatum = Convert.ToInt32(PflanzdatumPre);
+                // try
+                // {
+                //     int pflanzdatumInt = Convert.ToInt32(Pflanzdatum);
+                //     System.Console.WriteLine("Geht nicht");
+                // }
+                // catch (FormatException)
+                // {
+                //     // Warum bekomme ich hier eine Bad Format Exception wenn ich einen String z.B."2009" zu einem Int32 umwandeln möchte?
+                //     System.Console.WriteLine("Bad Format");
+                // }
+                // catch (OverflowException)
+                // {
+                //     // Selbe Frage hier: Warum Overflow?
+                //     System.Console.WriteLine("Overflow");
+                // }
             }
             catch (FormatException)
             {
@@ -72,7 +76,6 @@ namespace Baumprojekt
                     "\nObjektschlüssel: " + Objektschluessel +
                     "\nBaumnummer: " + Baumnummer +
                     "\nBaumart: " + Baumart + ", " + BaumartZusatz +
-                    "\nPflanzdatumInt: " + pflanzdatumInt +
                     "\nPflanzdatum: " + Pflanzdatum;
         }
     }
@@ -95,7 +98,7 @@ namespace Baumprojekt
                 // Daten in Liste schreiben
                 try
                 {
-                    for (int i = 1; i <= 101; i++)
+                    for (int i = 1; i <= 49886; i++)
                     {
                         BaumListe.Add(new Baeume(baeumeAsCsvString[i]));
                     }

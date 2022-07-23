@@ -13,8 +13,8 @@ namespace Baumprojekt
         public int ID {get; set;}
         public string ?Objektschluessel {get; set;}
         public int Baumnummer {get; set;}
-        public string ?Baumart {get; set;}
-        public string ?BaumartZusatz {get; set;}
+        public string ?BaumartLatein {get; set;}
+        public string ?BaumartDeutsch {get; set;}
         public int Pflanzdatum {get; set;}
 
         public Baeume() { }
@@ -32,8 +32,8 @@ namespace Baumprojekt
                 ID = Convert.ToInt32(csvEntries[3]);
                 Objektschluessel = csvEntries[4];
                 Baumnummer = Convert.ToInt16(csvEntries[5]);
-                Baumart = csvEntries[6];
-                BaumartZusatz = csvEntries[7];
+                BaumartLatein = csvEntries[6];
+                BaumartDeutsch = csvEntries[7];
                 Pflanzdatum = Convert.ToInt32(csvEntries[8]);
             }
             catch (FormatException)
@@ -56,7 +56,7 @@ namespace Baumprojekt
                     "\nID: " + ID +
                     "\nObjektschlüssel: " + Objektschluessel +
                     "\nBaumnummer: " + Baumnummer +
-                    "\nBaumart: " + Baumart + ", " + BaumartZusatz +
+                    "\nBaumart: " + BaumartLatein + ", " + BaumartDeutsch +
                     "\nPflanzdatum: " + Pflanzdatum;
         }
     }
@@ -137,7 +137,7 @@ namespace Baumprojekt
                 int bc2 = 1; //Nummer zur Kontrolle der Ausgabe
                 foreach (Baeume aBaum in BaumListe)
                 {
-                    if (bc2>1000){break;} //Abbrechen der Auflistung nach den ersten 1000 Elementen
+                    if (bc2>500){break;} //Abbrechen der Auflistung nach den ersten 500 Elementen
                     System.Console.WriteLine("______________________\nBaumdaten:");
                     System.Console.WriteLine("### {0} ###",bc2);
                     bc2 ++;

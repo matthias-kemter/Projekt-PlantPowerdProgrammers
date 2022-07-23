@@ -65,7 +65,7 @@ namespace Baumprojekt
     {    static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"baeume_kurz100.csv";
+            string pathBaeumeCsv = @"\csv\baum.csv";
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();

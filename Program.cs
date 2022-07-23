@@ -8,16 +8,15 @@ namespace Baumprojekt
 {
     class Baeume 
     {
-        public double X_Koordinate {get; set;}
-        public double Y_Koordinate {get; set;}
-        public int ObjektID {get; set;}
-        public int ID {get; set;}
-        public string ?Objektschluessel {get; set;}
-        public int Baumnummer {get; set;}
-        public string ?Baumart {get; set;}
-        public string ?BaumartZusatz {get; set;}
-        public string ?PflanzdatumPre {get; set;}
-        public int Pflanzdatum {get; set;}
+        public static double X_Koordinate {get; set;}
+        public static double Y_Koordinate {get; set;}
+        public static int ObjektID {get; set;}
+        public static int ID {get; set;}
+        public static string ?Objektschluessel {get; set;}
+        public static int Baumnummer {get; set;}
+        public static string ?Baumart {get; set;}
+        public static string ?BaumartZusatz {get; set;}
+        public static int Pflanzdatum {get; set;}
 
         public Baeume() { }
         public Baeume(string csvString)
@@ -36,24 +35,7 @@ namespace Baumprojekt
                 Baumnummer = Convert.ToInt16(csvEntries[5]);
                 Baumart = csvEntries[6];
                 BaumartZusatz = csvEntries[7];
-                // Hier kann man zwar noch Pflanzdatum = Convert.ToInt32(csvEntries[8]; schreiben, aber man bekommt auch so nur "0" als Ausgabe)
-                PflanzdatumPre = csvEntries[8];
-                Pflanzdatum = Convert.ToInt32(PflanzdatumPre);
-                // try
-                // {
-                //     int pflanzdatumInt = Convert.ToInt32(Pflanzdatum);
-                //     System.Console.WriteLine("Geht nicht");
-                // }
-                // catch (FormatException)
-                // {
-                //     // Warum bekomme ich hier eine Bad Format Exception wenn ich einen String z.B."2009" zu einem Int32 umwandeln möchte?
-                //     System.Console.WriteLine("Bad Format");
-                // }
-                // catch (OverflowException)
-                // {
-                //     // Selbe Frage hier: Warum Overflow?
-                //     System.Console.WriteLine("Overflow");
-                // }
+                Pflanzdatum = Convert.ToInt32(csvEntries[8]);
             }
             catch (FormatException)
             {

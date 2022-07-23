@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 
 
 namespace Baumprojekt
 {
     class Baeume 
     {
-        public double X_Koordinate {get; set;}
-        public double Y_Koordinate {get; set;}
-        public int ObjektID {get; set;}
-        public int ID {get; set;}
-        public string ?Objektschluessel {get; set;}
-        public int Baumnummer {get; set;}
-        public string ?Baumart {get; set;}
-        public string ?BaumartZusatz {get; set;}
-        public string ?Pflanzdatum {get; set;}
-        public int pflanzdatumInt {get; set;}
+        public static double X_Koordinate {get; set;}
+        public static double Y_Koordinate {get; set;}
+        public static int ObjektID {get; set;}
+        public static int ID {get; set;}
+        public static string ?Objektschluessel {get; set;}
+        public static int Baumnummer {get; set;}
+        public static string ?Baumart {get; set;}
+        public static string ?BaumartZusatz {get; set;}
+        public static int Pflanzdatum {get; set;}
 
         public Baeume() { }
         public Baeume(string csvString)
@@ -34,22 +35,7 @@ namespace Baumprojekt
                 Baumnummer = Convert.ToInt16(csvEntries[5]);
                 Baumart = csvEntries[6];
                 BaumartZusatz = csvEntries[7];
-                // Hier kann man zwar noch Pflanzdatum = Convert.ToInt32(csvEntries[8]; schreiben, aber man bekommt auch so nur "0" als Ausgabe)
-                Pflanzdatum = csvEntries[8];
-                try
-                {
-                    int pflanzdatumInt = Convert.ToInt32(Pflanzdatum);
-                }
-                catch (FormatException)
-                {
-                    // Warum bekomme ich hier eine Bad Format Exception wenn ich einen String z.B."2009" zu einem Int32 umwandeln möchte?
-                    System.Console.WriteLine("Bad Format");
-                }
-                catch (OverflowException)
-                {
-                    // Selbe Frage hier: Warum Overflow?
-                    System.Console.WriteLine("Overflow");
-                }
+                Pflanzdatum = Convert.ToInt32(csvEntries[8]);
             }
             catch (FormatException)
             {
@@ -72,7 +58,6 @@ namespace Baumprojekt
                     "\nObjektschlüssel: " + Objektschluessel +
                     "\nBaumnummer: " + Baumnummer +
                     "\nBaumart: " + Baumart + ", " + BaumartZusatz +
-                    "\nPflanzdatumInt: " + pflanzdatumInt +
                     "\nPflanzdatum: " + Pflanzdatum;
         }
     }
@@ -136,7 +121,8 @@ namespace Baumprojekt
         static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"Baum10.csv"; //für Bäume 100: "./csv/baeume_kurz100.csv" 
+            string pathBaeumeCsv = @"baeume_kurz100.csv";
+
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();
@@ -151,7 +137,8 @@ namespace Baumprojekt
                 // Daten in Liste schreiben
                 try
                 {
-                    for (int i = 1; i <= 101; i++)
+                    for (int i = 1; i <= 49886; i++)
+
                     {
                         BaumListe.Add(new Baeume(baeumeAsCsvString[i]));
                     }
@@ -160,6 +147,7 @@ namespace Baumprojekt
                 {
                     System.Console.WriteLine("Out Of Range");
                 }
+
                 int bc1 = 1; //Nummer zur Kontrolle der Ausgabe
                 // Daten ausgeben lassen mit ToString()
                 foreach (Baeume aBaum in BaumListe)

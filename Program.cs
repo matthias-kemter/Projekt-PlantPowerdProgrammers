@@ -12,7 +12,7 @@ namespace Baumprojekt
         public int ObjektID {get; set;}
         public int ID {get; set;}
         public string ?Objektschluessel {get; set;}
-        public int Baumnummer {get; set;}
+        public string ?Baumnummer {get; set;}
         public string ?BaumartLatein {get; set;}
         public string ?BaumartDeutsch {get; set;}
         public int Pflanzdatum {get; set;}
@@ -31,7 +31,7 @@ namespace Baumprojekt
                 ObjektID = Convert.ToInt16(csvEntries[2]);
                 ID = Convert.ToInt32(csvEntries[3]);
                 Objektschluessel = csvEntries[4];
-                Baumnummer = Convert.ToInt16(csvEntries[5]);
+                Baumnummer = csvEntries[5];
                 BaumartLatein = csvEntries[6];
                 BaumartDeutsch = csvEntries[7];
                 Pflanzdatum = Convert.ToInt32(csvEntries[8]);

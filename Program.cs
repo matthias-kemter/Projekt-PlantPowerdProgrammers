@@ -32,8 +32,20 @@ namespace Baumprojekt
                 ID = Convert.ToInt32(csvEntries[3]);
                 Objektschluessel = csvEntries[4];
                 Baumnummer = Convert.ToInt16(csvEntries[5]);
-                BaumartLatein = csvEntries[6];
-                BaumartDeutsch = csvEntries[7];
+                if (BaumartLatein == null)
+                {
+                    BaumartLatein = "Ignotus";
+                }else
+                {
+                    BaumartLatein = csvEntries[6];
+                }
+                if (BaumartDeutsch == null)
+                {
+                    BaumartDeutsch = "Unbekannt";
+                }else
+                {
+                    BaumartDeutsch = csvEntries[7];
+                }
                 Pflanzdatum = Convert.ToInt32(csvEntries[8]);
             }
             catch (FormatException)
@@ -137,7 +149,7 @@ namespace Baumprojekt
                 int bc2 = 1; //Nummer zur Kontrolle der Ausgabe
                 foreach (Baeume aBaum in BaumListe)
                 {
-                    if (bc2>50){break;} //Abbrechen der Auflistung nach den ersten 50 Elementen
+                    if (bc2>50){break;} //Abbrechen der Auflistung nach den ersten 500 Elementen
                     System.Console.WriteLine("______________________\nBaumdaten:");
                     System.Console.WriteLine("### {0} ###",bc2);
                     bc2 ++;

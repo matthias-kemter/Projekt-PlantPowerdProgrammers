@@ -69,6 +69,16 @@ namespace Baumprojekt
         }
     }
 
+    class Umkreis{
+        //50 ältesten Bäume
+        //sortieren nach südlichsten,nördlichste,westl. und östlichen
+        //nord/süd und ost/west Durchschnitt
+        //--> neue koordinaten für mittelpunkt
+        //Abstand zu allen 50 bäumen
+        //--> länsgter abstsnd ist umkreis um Mittelpunkt mit den ältesten bäumen
+
+    }
+
     class Program
     {    
         //Sortiereung mit Quicksort  für Pflanzdatum

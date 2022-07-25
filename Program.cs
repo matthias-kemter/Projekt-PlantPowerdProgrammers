@@ -218,15 +218,34 @@ namespace Baumprojekt
         {       
             bool westtree_bool = false;
             bool easttree_bool  = false;
+            bool nordtree_bool  = false;
+            bool southtree_bool  = false;
             bool abstand_bool = false;
+
+            // Wenn der westlichste Baum Koordinaten übergeben bekommt, sind diese ungleich 0, also ist der Test true
             if (westtree != 0)
             {
                 westtree_bool = true;
             }
+
+            // Analog für Ost
             if (easttree != 0)
             {
                 easttree_bool = true;
             }
+
+            // Analog für Nord
+            if (nordtree != 0)
+            {
+                nordtree_bool = true;
+            }
+
+            // Analog für Süd
+            if (southtree != 0)
+            {
+                southtree_bool = true;
+            }
+
             if (abstand != 0)
             {
                 abstand_bool = true;
@@ -236,6 +255,8 @@ namespace Baumprojekt
             System.Console.WriteLine("Koordinaten der Extrema-Bäume werden überprüft...\n");
             System.Console.WriteLine("Westtree: {0}",westtree_bool);
             System.Console.WriteLine("Easttree: {0}",easttree_bool);
+            System.Console.WriteLine("Northtree: {0}",nordtree_bool);
+            System.Console.WriteLine("Southtree: {0}",southtree_bool);
             System.Console.WriteLine("Abstand: {0}",abstand_bool);
             System.Console.WriteLine("======================");
         }

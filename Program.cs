@@ -74,7 +74,7 @@ namespace Baumprojekt
                     "\nPflanzdatum: " + Pflanzdatum;
         }
     }
-
+    
 class Umkreis : Sortieren
     { 
         public static double midwe {get; set;}
@@ -146,11 +146,9 @@ class Umkreis : Sortieren
                 List<Baeume> sorted = quicksortWest(smaller); 
                 sorted.Add(pivot);
                 sorted.AddRange(quicksortNord(greater));
-
                 westtree = list[0].X_Koordinate;
                 easttree = list[49].X_Koordinate;
                 midwe =  (westtree + easttree)/2;
-
                 for(int i = 0; i >= 49 ;i++){
                     Wests [i]= list[0].X_Koordinate;
                 }
@@ -168,6 +166,12 @@ class Umkreis : Sortieren
             }
             //nord/süd und ost/west Durchschnitt    //--> neue koordinaten für mittelpunkt
             //Abstand zu allen 50 bäumen    //--> länsgter abstsnd ist umkreis um Mittelpunkt mit den ältesten bäumen
+        }
+        public static void OutputCheck()
+        {
+                System.Console.WriteLine(westtree);
+                System.Console.WriteLine(easttree);
+                System.Console.WriteLine(abstand);
         }
     }
     class Sortieren
@@ -204,9 +208,9 @@ class Umkreis : Sortieren
         static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"./csv/baeume.csv"; //./csv/baeume.csv
+            string pathBaeumeCsv = @"./csv/Neu.csv"; //./csv/baeume.csv
             //Anzahl der Bäume in Csv
-            int anzahlInListe = 49886;
+            int anzahlInListe = 1;
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();
@@ -258,9 +262,8 @@ class Umkreis : Sortieren
             }
 
             Umkreis.Rechnen();//Aufruf Funktion Umkreis/Mittelpunkt-brechnen
-
-            System.Console.WriteLine("Mittelpunkt: {0}|{1} \nUmkreis: {2} \n",Umkreis.midwe,Umkreis.midns,Umkreis.abstand);
-
+            System.Console.WriteLine("______________________\n----------------------\nMittelpunkt: {0}|{1} \nUmkreis: {2} \n",Umkreis.midwe,Umkreis.midns,Umkreis.abstand);
+            Umkreis.OutputCheck();    
         }
     }
 }

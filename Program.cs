@@ -203,6 +203,22 @@ namespace Baumprojekt
             return sorted;
         }
     }
+    class Testen
+    {
+        // Testfunktion für den Abstand - falls er ungleich 0 ist, wird er richtig ausgerechnet. Zur Zeit ist ist das Ergebnis immer 0
+        public void CheckAbstand (double abstand)
+        {
+            if (abstand != 0)
+            {
+                System.Console.WriteLine("Test bestanden!");
+            }else
+            {
+                System.Console.WriteLine("Test fehlgeschlagen!");
+            }
+        }
+        // Test für korrekte Eingabe von int anzahlInListe ist geregelt mit dem Exception Handling (Out Of Range bzw Bad Format)
+        
+    }
     class Program
     {    
         static void Main(string[] args)

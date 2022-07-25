@@ -377,6 +377,8 @@ namespace Baumprojekt
             System.Console.WriteLine("Mittelpunkt: ({0}|{1})",Umkreis.midwe,Umkreis.midns);
             System.Console.WriteLine("Umkreis: {0}",Umkreis.abstand);
             System.Console.WriteLine("======================");
+            
+            // Testen Koordinaten und Abstand mit Output-Check
             neuerUmkreis.OutputCheck(); //Testing   
 
             // Klasse Testen instanziieren

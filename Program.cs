@@ -33,7 +33,7 @@ namespace Baumprojekt
                 Objektschluessel = csvEntries[4];
                 Baumnummer = csvEntries[5];
                 BaumartLatein = csvEntries[6];
-                if (BaumartLatein == null)
+                if (BaumartLatein == null) //Korrektur für nicht erkannte Baumart bzw. nicht in Csv angegeben
                 {
                     BaumartLatein = "Ignotus";
                 }
@@ -50,7 +50,7 @@ namespace Baumprojekt
                     Pflanzdatum = Convert.ToInt32(csvEntries[8]);
                 }
             }
-            catch (FormatException)
+            catch (FormatException) //Exception-Handling
             {
                 System.Console.WriteLine("Bad Format");
             }
@@ -77,9 +77,11 @@ namespace Baumprojekt
     
     class Umkreis : Sortieren
     { 
-        public static double midwe {get; set;}
-        public static double midns {get; set;}
-        public static double nordtree {get; set;}
+        //Variabeln für die Mittelpunktberechnung
+        public static double midwe {get; set;}//Mitte westlichste und östlichste Koordinate
+        public static double midns {get; set;}//Mitte nördlichste und südlichste Koordinate
+        //extrembäume in der himmelsrichtungen
+        public static double nordtree {get; set;} 
         public static double southtree {get; set;}
         public static double westtree {get; set;}
         public static double easttree {get; set;}
@@ -88,7 +90,8 @@ namespace Baumprojekt
         public static double [] Nords = new double [49]; //Westkoordinaten
         public void Rechnen()
         { 
-            static List<Baeume> quicksortNord(List<Baeume> list)
+            //sortieren nach x-Koordinate
+            static List<Baeume> quicksortNord(List<Baeume> list) 
             {
                 if (list.Count <= 1) return list;
                 int pivotPosition = list.Count / 2;
@@ -116,13 +119,14 @@ namespace Baumprojekt
                 southtree = list[49].Y_Koordinate;
                 midns =  (nordtree + southtree)/2;
 
-                for(int i = 0; i >= 49 ;i++){
+                for(int i = 0; i >= 49 ;i++){ //Array sortiert nach Norden
                     Nords [i]= list[0].X_Koordinate;
                 }
                 
                 return sorted;
             }
 
+            //sortieren nach x-Koordinate
             static List<Baeume> quicksortWest(List<Baeume> list)
             {
                 if (list.Count <= 1) return list;
@@ -146,16 +150,19 @@ namespace Baumprojekt
                 List<Baeume> sorted = quicksortWest(smaller); 
                 sorted.Add(pivot);
                 sorted.AddRange(quicksortNord(greater));
+
                 westtree = list[0].X_Koordinate;
                 easttree = list[49].X_Koordinate;
                 midwe =  (westtree + easttree)/2;
-                for(int i = 0; i >= 49 ;i++){
+
+                for(int i = 0; i >= 49 ;i++){ //Array sortiert nach Westen
                     Wests [i]= list[0].X_Koordinate;
                 }
                 
                 return sorted;
             }
 
+            //Abstandsberechnug mit Hilfe des Satz von Pythagoras
             abstand =  0.0;
             for(int i = 0; i >= 49; i++){
                 double testabstand = Math.Sqrt(Math.Pow((midwe-Wests[i]), 2)+Math.Pow((midns-Nords[i]),2));
@@ -251,7 +258,7 @@ namespace Baumprojekt
         static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"./csv/Baeume.csv"; //./csv/baeume.csv
+            string pathBaeumeCsv = @"./csv/baeume.csv"; //./csv/baeume.csv
             //Anzahl der Bäume in Csv
             int anzahlInListe = 49885;
 
@@ -277,37 +284,25 @@ namespace Baumprojekt
                 {
                     System.Console.WriteLine("Out Of Range");
                 }
-
-                int bc1 = 1; //Nummer zur Kontrolle der Ausgabe
-                // Daten ausgeben lassen mit ToString()
-                foreach (Baeume aBaum in BaumListe)
-                {
-                    System.Console.WriteLine("______________________\nBaumdaten:");
-                    System.Console.WriteLine("### {0} ###",bc1);
-                    bc1 ++;
-                    System.Console.WriteLine(aBaum.ToString());
-                }
                 
-                System.Console.WriteLine("\n #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=NOW SORTED=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#\n");
+                System.Console.WriteLine("\n##### Hier folgt die sortierte Liste: #####\n");
                 
                 //Aufruf sort-function
                 BaumListe = Sortieren.quicksortPflanzdatum(BaumListe);
 
-                int bc2 = 1; //Nummer zur Kontrolle der Ausgabe
+                int bc = 1; //Nummer zur Kontrolle der Ausgabe
                 foreach (Baeume aBaum in BaumListe)
                 {
-                    if (bc2>50){break;} //Abbrechen der Auflistung nach den ersten 500 Elementen
+                    if (bc>50){break;} //Abbrechen der Auflistung nach den ersten 50 Elementen
                     System.Console.WriteLine("______________________\nBaumdaten:");
-                    System.Console.WriteLine("### {0} ###",bc2);
-                    bc2 ++;
+                    System.Console.WriteLine("### {0} ###",bc);
+                    bc ++;
                     System.Console.WriteLine(aBaum.ToString());
                 }
             }
             // Test ob Sortieren in aufsteigender Reihenfolge funktioniert
             Testen tests = new Testen();
             tests.CheckIfAscending(BaumListe);
-            
-
             
             // Fix object reference for non static field or method
             Umkreis neuerUmkreis = new Umkreis();

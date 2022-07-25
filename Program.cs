@@ -315,4 +315,4 @@ namespace Baumprojekt
             tests.CheckAbstand(Umkreis.abstand);
         }
     }
-}//Hier ist da Ende eine wunderschönen Programmcodes.
+}//Hier ist das Ende eines wunderschönen Programmcodes.

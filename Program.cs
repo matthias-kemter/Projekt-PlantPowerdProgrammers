@@ -216,9 +216,10 @@ namespace Baumprojekt
         }
         public void OutputCheck()
         {       //Testen und überprüfen der Ausgabe
-                System.Console.WriteLine(westtree);
-                System.Console.WriteLine(easttree);
-                System.Console.WriteLine(abstand);
+                System.Console.WriteLine("OutputCheck:");
+                System.Console.WriteLine("Westtree: {0}",westtree);
+                System.Console.WriteLine("Easttree: {0}",easttree);
+                System.Console.WriteLine("Abstand: {0}",abstand);
         }
     }
 
@@ -229,11 +230,17 @@ namespace Baumprojekt
         public void CheckAbstand (double abstand)
         {
             if (abstand != 0)
-            {
+            {   
+                System.Console.WriteLine("\n======================");
+                System.Console.WriteLine("Abstand-Test wird durchgeführt...");
                 System.Console.WriteLine("Abstand-Test bestanden!"); //Ergebnis wenn wir was können
+                System.Console.WriteLine("======================\n");
             }else
             {
+                System.Console.WriteLine("\n======================");
+                System.Console.WriteLine("Abstand-Test wird durchgeführt...");
                 System.Console.WriteLine("Abstand-Test fehlgeschlagen!"); //Ergebnis wenn der Computer, nicht das macht was wir wollen
+                System.Console.WriteLine("======================\n");
             }
         }
         // Testen ob Sortieren erfolgreich
@@ -252,11 +259,33 @@ namespace Baumprojekt
                 }
             }
             if (testSuccess == true) //Nutzerausgabe 
-            {
+            {   
+                System.Console.WriteLine("\n======================");
+                System.Console.WriteLine("Sortieren-Test wird durchgeführt...");
                 System.Console.WriteLine("Sortieren-Test erfolgreich!");
+                System.Console.WriteLine("======================\n");
             }else
             {
+                System.Console.WriteLine("\n======================");
+                System.Console.WriteLine("Sortieren-Test wird durchgeführt...");
                 System.Console.WriteLine("Sortieren-Test nicht erfolgreich!");
+                System.Console.WriteLine("======================\n");
+            }
+        }
+    }
+
+    class printCsv
+    {
+        public void print(List <Baeume> sortierteBaeume)
+        {
+            // Durch eine If-Abfrage kann das Program fehlerfrei laufen, auch wenn es schonmal gestartet wurde und somit die csv schon existiert
+            if (File.Exists("SortierteCsv.csv")==false)
+            {
+                File.WriteAllLines("SortierteCsv.csv", sortierteBaeume.Select(x => string.Join(",", x)));    
+            }else
+            {
+                File.Delete("SortierteCsv.csv");
+                File.WriteAllLines("SortierteCsv.csv", sortierteBaeume.Select(x => string.Join(",", x)));
             }
         }
     }
@@ -283,7 +312,7 @@ namespace Baumprojekt
                 // Daten in Liste schreiben
                 try
                 {
-                    for (int i = 1; i <= stringLength; i++)
+                    for (int i = 1; i <= 49886; i++)
 
                     { //neuer Baum zu Liste hinzufügen
                         BaumListe.Add(new Baeume(baeumeAsCsvString[i]));
@@ -322,7 +351,8 @@ namespace Baumprojekt
             System.Console.WriteLine("______________________\n----------------------\nMittelpunkt: {0}|{1} \nUmkreis: {2} \n",Umkreis.midwe,Umkreis.midns,Umkreis.abstand);
             neuerUmkreis.OutputCheck(); //Testing   
             tests.CheckAbstand(Umkreis.abstand);
-            
+            printCsv neueCsv = new printCsv();
+            neueCsv.print(BaumListe);
         }
     }
 }//Hier ist das Ende eines wunderschönen Programmcodes.

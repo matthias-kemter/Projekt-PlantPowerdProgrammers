@@ -281,11 +281,11 @@ namespace Baumprojekt
             // Durch eine If-Abfrage kann das Program fehlerfrei laufen, auch wenn es schonmal gestartet wurde und somit die csv schon existiert
             if (File.Exists("SortierteCsv.csv")==false)
             {
-                File.WriteAllLines("SortierteCsv.csv", sortierteBaeume.Select(x => string.Join(",", x)));    
+                File.WriteAllLines("./csv/SortierteCsv.csv", sortierteBaeume.Select(x => string.Join(",", x)));    
             }else
             {
-                File.Delete("SortierteCsv.csv");
-                File.WriteAllLines("SortierteCsv.csv", sortierteBaeume.Select(x => string.Join(",", x)));
+                File.Delete("./csv/SortierteCsv.csv");
+                File.WriteAllLines("./csv/SortierteCsv.csv", sortierteBaeume.Select(x => string.Join(",", x)));
             }
         }
     }

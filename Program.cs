@@ -253,6 +253,7 @@ namespace Baumprojekt
                     System.Console.WriteLine("Sortieren-Test nicht erfolgreich!");
                 }
         }
+    }
     
     class Program
     {    

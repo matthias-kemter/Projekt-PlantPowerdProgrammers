@@ -252,8 +252,6 @@ namespace Baumprojekt
         {
             // Dateiname von csv
             string pathBaeumeCsv = @"./csv/Baeume.csv"; //./csv/baeume.csv
-            //Anzahl der Bäume in Csv
-            int anzahlInListe = 49885;
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();
@@ -264,10 +262,12 @@ namespace Baumprojekt
                 // Zeile lesen
                 string[] baeumeAsCsvString = File.ReadAllLines(pathBaeumeCsv);
 
+                int stringLength = baeumeAsCsvString.GetLength(0);
+                
                 // Daten in Liste schreiben
                 try
                 {
-                    for (int i = 1; i <= anzahlInListe; i++)
+                    for (int i = 1; i <= stringLength; i++)
 
                     {
                         BaumListe.Add(new Baeume(baeumeAsCsvString[i]));
@@ -303,6 +303,7 @@ namespace Baumprojekt
                     System.Console.WriteLine(aBaum.ToString());
                 }
             }
+            
             // Test ob Sortieren in aufsteigender Reihenfolge funktioniert
             Testen tests = new Testen();
             tests.CheckIfAscending(BaumListe);
@@ -315,6 +316,7 @@ namespace Baumprojekt
             System.Console.WriteLine("______________________\n----------------------\nMittelpunkt: {0}|{1} \nUmkreis: {2} \n",Umkreis.midwe,Umkreis.midns,Umkreis.abstand);
             neuerUmkreis.OutputCheck();    
             tests.CheckAbstand(Umkreis.abstand);
+            
         }
     }
 }

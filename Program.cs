@@ -86,7 +86,7 @@ namespace Baumprojekt
         public static double abstand {get; set;}
         public static double [] Wests = new double [49]; //Westkoordinaten
         public static double [] Nords = new double [49]; //Westkoordinaten
-        public static void Rechnen()
+        public void Rechnen()
         { 
             static List<Baeume> quicksortNord(List<Baeume> list)
             {
@@ -167,7 +167,7 @@ namespace Baumprojekt
             //nord/süd und ost/west Durchschnitt    //--> neue koordinaten für mittelpunkt
             //Abstand zu allen 50 bäumen    //--> länsgter abstsnd ist umkreis um Mittelpunkt mit den ältesten bäumen
         }
-        public static void OutputCheck()
+        public void OutputCheck()
         {
                 System.Console.WriteLine(westtree);
                 System.Console.WriteLine(easttree);
@@ -205,6 +205,7 @@ namespace Baumprojekt
     }
     class Testen
     {
+        public bool testSuccess {get; set;}
         // Testfunktion für den Abstand - falls er ungleich 0 ist, wird er richtig ausgerechnet. Zur Zeit ist ist das Ergebnis immer 0
         public void CheckAbstand (double abstand)
         {
@@ -216,17 +217,42 @@ namespace Baumprojekt
                 System.Console.WriteLine("Test fehlgeschlagen!");
             }
         }
-        // Test für korrekte Eingabe von int anzahlInListe ist geregelt mit dem Exception Handling (Out Of Range bzw Bad Format)
-
+        // Testen ob Sortieren erfolgreich
+        public void CheckIfAscending (List<Baeume> list)
+        {
+            for (int i = 0; i < 49; i++)
+            {
+                if (list[i].Pflanzdatum < list[i+1].Pflanzdatum)
+                {
+                    testSuccess = true;
+                }else
+                {
+                    if (list[i].Pflanzdatum == list[i+1].Pflanzdatum)
+                    {
+                        testSuccess = true;
+                    }else
+                    {
+                        testSuccess = false;
+                    }
+                }
+            }
+            if (testSuccess == true)
+                {
+                    System.Console.WriteLine("Sortieren-Test erfolgreich!");
+                }else
+                {
+                    System.Console.WriteLine("Test nicht erfolgreich!");
+                }
+        }
     }
     class Program
     {    
         static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"./csv/Neu.csv"; //./csv/baeume.csv
+            string pathBaeumeCsv = @"./csv/Baeume.csv"; //./csv/baeume.csv
             //Anzahl der Bäume in Csv
-            int anzahlInListe = 1;
+            int anzahlInListe = 49886;
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();
@@ -276,10 +302,16 @@ namespace Baumprojekt
                     System.Console.WriteLine(aBaum.ToString());
                 }
             }
-
-            Umkreis.Rechnen();//Aufruf Funktion Umkreis/Mittelpunkt-brechnen
+            // Test ob Sortieren in aufsteigender Reihenfolge funktioniert
+            Testen sortierenTest = new Testen();
+            sortierenTest.CheckIfAscending(BaumListe);
+            /*
+            // Fix object reference for non static field or method
+            Umkreis neuerUmkreis = new Umkreis();
+            neuerUmkreis.Rechnen();//Aufruf Funktion Umkreis/Mittelpunkt-brechnen
             System.Console.WriteLine("______________________\n----------------------\nMittelpunkt: {0}|{1} \nUmkreis: {2} \n",Umkreis.midwe,Umkreis.midns,Umkreis.abstand);
-            Umkreis.OutputCheck();    
+            neuerUmkreis.OutputCheck();    
+            */
         }
     }
 }

@@ -15,6 +15,7 @@ _Projektarbeit vom Team PlantPowerdProgrammers_
 -   Bereich der ältesten 50 Bäume ermitteln (Mittelpunkt/ Umkreis)
 
 **UML-Diagramm:**
+![image](https://user-images.githubusercontent.com/104350702/180890429-38541623-a49c-4154-9327-7eef94313c64.png)
 
 **Dateien/ Daten:**
 - Geschütze Bäume im Großraum Chemnitz: _https://www.govdata.de/web/guest/suchen/-/details/baeume_

@@ -220,6 +220,7 @@ namespace Baumprojekt
         // Testen ob Sortieren erfolgreich
         public void CheckIfAscending (List<Baeume> list)
         {
+            // Es reicht hier nur die ersten 50 Einträge zu checken, da diese hinreichend sind um eine Aussage über die Funktionalität des Sortieralgorithmus zu treffen
             for (int i = 0; i < 49; i++)
             {
                 if (list[i].Pflanzdatum < list[i+1].Pflanzdatum)
@@ -252,7 +253,7 @@ namespace Baumprojekt
             // Dateiname von csv
             string pathBaeumeCsv = @"./csv/Baeume.csv"; //./csv/baeume.csv
             //Anzahl der Bäume in Csv
-            int anzahlInListe = 49886;
+            int anzahlInListe = 49885;
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();

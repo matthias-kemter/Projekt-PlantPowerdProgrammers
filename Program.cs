@@ -42,7 +42,13 @@ namespace Baumprojekt
                 {
                     BaumartDeutsch = "Unbekannt";
                 }
-                Pflanzdatum = Convert.ToInt32(csvEntries[8]);
+                if (csvEntries[8].Length == 0) //Korrektur für nicht erkanntes Pflanzdatum zu 999 um Fehler beim sortieren zu vermeiden
+                {
+                    Pflanzdatum = 9999;
+                }
+                else{
+                    Pflanzdatum = Convert.ToInt32(csvEntries[8]);
+                }
             }
             catch (FormatException)
             {
@@ -70,6 +76,8 @@ namespace Baumprojekt
     }
 
     class Umkreis{
+
+
         //50 ältesten Bäume
         //sortieren nach südlichsten,nördlichste,westl. und östlichen
         //nord/süd und ost/west Durchschnitt
@@ -78,11 +86,10 @@ namespace Baumprojekt
         //--> länsgter abstsnd ist umkreis um Mittelpunkt mit den ältesten bäumen
 
     }
-
-    class Program
-    {    
+    class Sortieren
+    {
         //Sortiereung mit Quicksort  für Pflanzdatum
-        static List<Baeume> quicksortPflanzdatum(List<Baeume> list)
+        public static List<Baeume> quicksortPflanzdatum(List<Baeume> list)
         {
             if (list.Count <= 1) return list;
             int pivotPosition = list.Count / 2;
@@ -107,6 +114,10 @@ namespace Baumprojekt
             sorted.AddRange(quicksortPflanzdatum(greater));
             return sorted;
         }
+    }
+    class Program
+    {    
+        
         static void Main(string[] args)
         {
             // Dateiname von csv
@@ -150,7 +161,7 @@ namespace Baumprojekt
                 System.Console.WriteLine("\n #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=NOW SORTED=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#\n");
                 
                 //Aufruf sort-function
-                BaumListe = quicksortPflanzdatum(BaumListe);
+                BaumListe = Sortieren.quicksortPflanzdatum(BaumListe);
 
                 int bc2 = 1; //Nummer zur Kontrolle der Ausgabe
                 foreach (Baeume aBaum in BaumListe)

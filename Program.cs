@@ -215,13 +215,29 @@ namespace Baumprojekt
             //Abstand zu allen 50 bäumen    //--> länsgter abstsnd ist umkreis um Mittelpunkt mit den ältesten bäumen
         }
         public void OutputCheck()
-        {       //Testen und überprüfen der Ausgabe
-                System.Console.WriteLine("\n======================");
-                System.Console.WriteLine("Koordinaten der Extrema-Bäume werden überprüft...\n");
-                System.Console.WriteLine("Westtree: {0}",westtree);
-                System.Console.WriteLine("Easttree: {0}",easttree);
-                System.Console.WriteLine("Abstand: {0}",abstand);
-                System.Console.WriteLine("======================");
+        {       
+            bool westtree_bool = false;
+            bool easttree_bool  = false;
+            bool abstand_bool = false;
+            if (westtree != 0)
+            {
+                westtree_bool = true;
+            }
+            if (easttree != 0)
+            {
+                easttree_bool = true;
+            }
+            if (abstand != 0)
+            {
+                abstand_bool = true;
+            }
+            //Testen und überprüfen der Ausgabe
+            System.Console.WriteLine("\n======================");
+            System.Console.WriteLine("Koordinaten der Extrema-Bäume werden überprüft...\n");
+            System.Console.WriteLine("Westtree: {0}",westtree_bool);
+            System.Console.WriteLine("Easttree: {0}",easttree_bool);
+            System.Console.WriteLine("Abstand: {0}",abstand_bool);
+            System.Console.WriteLine("======================");
         }
     }
 

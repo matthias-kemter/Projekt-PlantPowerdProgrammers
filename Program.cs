@@ -361,9 +361,6 @@ namespace Baumprojekt
                 {
                     System.Console.WriteLine("Out Of Range");
                 }
-
-                printCsv neueCsv = new printCsv();
-                neueCsv.print(BaumListe);
                 
                 //Hinweißkommentar
                 System.Console.WriteLine("\n##### Hier folgt die sortierte Liste: #####\n");
@@ -411,6 +408,9 @@ namespace Baumprojekt
             // Test ob Abstand zum Mittelpunkt korrekt ausgerechnet wird
             tests.CheckAbstand(Umkreis.abstand);
             
+            // CSV 'SortiertNachPflanzdatum.csv' wird erstellt
+            printCsv neueCsv = new printCsv();
+            neueCsv.print(BaumListe);
         }
     }
 }//Hier ist das Ende eines wunderschönen Programmcodes.

@@ -335,7 +335,7 @@ namespace Baumprojekt
         {
             // Dateiname von csv
 
-            string pathBaeumeCsv = @"./csv/Baeume.csv"; //./csv/baeume.csv
+            string pathBaeumeCsv = @"./csv/baeume.csv";
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();

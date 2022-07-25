@@ -216,10 +216,12 @@ namespace Baumprojekt
         }
         public void OutputCheck()
         {       //Testen und überprüfen der Ausgabe
-                System.Console.WriteLine("OutputCheck:");
+                System.Console.WriteLine("\n======================");
+                System.Console.WriteLine("Koordinaten der Extrema-Bäume werden überprüft...\n");
                 System.Console.WriteLine("Westtree: {0}",westtree);
                 System.Console.WriteLine("Easttree: {0}",easttree);
                 System.Console.WriteLine("Abstand: {0}",abstand);
+                System.Console.WriteLine("======================");
         }
     }
 
@@ -234,13 +236,13 @@ namespace Baumprojekt
                 System.Console.WriteLine("\n======================");
                 System.Console.WriteLine("Abstand-Test wird durchgeführt...");
                 System.Console.WriteLine("Abstand-Test bestanden!"); //Ergebnis wenn wir was können
-                System.Console.WriteLine("======================\n");
+                System.Console.WriteLine("======================");
             }else
             {
                 System.Console.WriteLine("\n======================");
                 System.Console.WriteLine("Abstand-Test wird durchgeführt...");
                 System.Console.WriteLine("Abstand-Test fehlgeschlagen!"); //Ergebnis wenn der Computer, nicht das macht was wir wollen
-                System.Console.WriteLine("======================\n");
+                System.Console.WriteLine("======================");
             }
         }
         // Testen ob Sortieren erfolgreich
@@ -263,13 +265,13 @@ namespace Baumprojekt
                 System.Console.WriteLine("\n======================");
                 System.Console.WriteLine("Sortieren-Test wird durchgeführt...");
                 System.Console.WriteLine("Sortieren-Test erfolgreich!");
-                System.Console.WriteLine("======================\n");
+                System.Console.WriteLine("======================");
             }else
             {
                 System.Console.WriteLine("\n======================");
                 System.Console.WriteLine("Sortieren-Test wird durchgeführt...");
                 System.Console.WriteLine("Sortieren-Test nicht erfolgreich!");
-                System.Console.WriteLine("======================\n");
+                System.Console.WriteLine("======================");
             }
         }
     }
@@ -322,6 +324,9 @@ namespace Baumprojekt
                 {
                     System.Console.WriteLine("Out Of Range");
                 }
+
+                printCsv neueCsv = new printCsv();
+                neueCsv.print(BaumListe);
                 
                 //Hinweißkommentar
                 System.Console.WriteLine("\n##### Hier folgt die sortierte Liste: #####\n");
@@ -340,19 +345,33 @@ namespace Baumprojekt
                 }
             }
             
-            // Test ob Sortieren in aufsteigender Reihenfolge funktioniert
-            Testen tests = new Testen();
-            tests.CheckIfAscending(BaumListe);
             
             // Fix object reference for non static field or method
             Umkreis neuerUmkreis = new Umkreis();
             neuerUmkreis.Rechnen();//Aufruf Funktion Umkreis/Mittelpunkt brechnen
+
+            // Tests
+            System.Console.WriteLine("\n======================");
+            System.Console.WriteLine("Ab hier beginnen die Tests!");
+            System.Console.WriteLine("======================");
+
             //Ausgabe Mittlepunkt und Umkreis
-            System.Console.WriteLine("______________________\nMittelpunkt: ({0}|{1}) \nUmkreis: {2} \n______________________\n",Umkreis.midwe,Umkreis.midns,Umkreis.abstand);
+            System.Console.WriteLine("\n======================");
+            System.Console.WriteLine("Mittelpunkt und Umkreis werden getestet...\n");
+            System.Console.WriteLine("Mittelpunkt: ({0}|{1})",Umkreis.midwe,Umkreis.midns);
+            System.Console.WriteLine("Umkreis: {0}",Umkreis.abstand);
+            System.Console.WriteLine("======================");
             neuerUmkreis.OutputCheck(); //Testing   
+
+            // Klasse Testen instanziieren
+            Testen tests = new Testen();
+
+            // Test ob Sortieren in aufsteigender Reihenfolge funktioniert
+            tests.CheckIfAscending(BaumListe);
+
+            // Test ob Abstand zum Mittelpunkt korrekt ausgerechnet wird
             tests.CheckAbstand(Umkreis.abstand);
-            printCsv neueCsv = new printCsv();
-            neueCsv.print(BaumListe);
+            
         }
     }
 }//Hier ist das Ende eines wunderschönen Programmcodes.

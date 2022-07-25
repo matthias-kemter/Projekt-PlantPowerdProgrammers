@@ -217,7 +217,7 @@ namespace Baumprojekt
             }
         }
         // Test für korrekte Eingabe von int anzahlInListe ist geregelt mit dem Exception Handling (Out Of Range bzw Bad Format)
-        
+
     }
     class Program
     {    
@@ -246,7 +246,7 @@ namespace Baumprojekt
                         BaumListe.Add(new Baeume(baeumeAsCsvString[i]));
                     }
                 }
-                catch (IndexOutOfRangeException)
+                catch (IndexOutOfRangeException) // wird ausgegeben, falls anzahlInListe nicht korrekt angegeben
                 {
                     System.Console.WriteLine("Out Of Range");
                 }

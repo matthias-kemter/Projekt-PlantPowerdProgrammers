@@ -42,7 +42,7 @@ namespace Baumprojekt
                 {
                     BaumartDeutsch = "Unbekannt";
                 }
-                if (csvEntries[8].Length == 0) //Korrektur für nicht erkanntes Pflanzdatum zu 999 um Fehler beim sortieren zu vermeiden
+                if (csvEntries[8].Length == 0) //Korrektur für nicht erkanntes Pflanzdatum zu 9999 um Fehler beim sortieren zu vermeiden
                 {
                     Pflanzdatum = 9999;
                 }
@@ -75,7 +75,7 @@ namespace Baumprojekt
         }
     }
     
-class Umkreis : Sortieren
+    class Umkreis : Sortieren
     { 
         public static double midwe {get; set;}
         public static double midns {get; set;}

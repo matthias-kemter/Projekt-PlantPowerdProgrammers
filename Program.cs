@@ -259,9 +259,9 @@ namespace Baumprojekt
         static void Main(string[] args)
         {
             // Dateiname von csv
-            string pathBaeumeCsv = @"./csv/Baum10.csv"; //./csv/baeume.csv
+            string pathBaeumeCsv = @"./csv/baeume.csv"; //./csv/baeume.csv
             //Anzahl der Bäume in Csv
-            int anzahlInListe = 10;
+            int anzahlInListe = 49885; //Notiz: lange Liste 49885 Einträge
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();

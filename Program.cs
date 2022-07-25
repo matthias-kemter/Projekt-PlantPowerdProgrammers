@@ -76,6 +76,7 @@ namespace Baumprojekt
     }
 
     class Umkreis{
+         List<Baeume> AlteBaumListe = new List<Baeume>();
 
 
         //50 ältesten Bäume

@@ -229,7 +229,7 @@ namespace Baumprojekt
         // Testfunktion für den Abstand - falls er ungleich 0 ist, wird er richtig ausgerechnet. Zur Zeit ist ist das Ergebnis immer 0
         public void CheckAbstand (double abstand)
         {
-            if (abstand != 0)
+            if (abstand != 0)//Testausgabe für Erfolg des Abstandtests 
             {   
                 System.Console.WriteLine("\n======================");
                 System.Console.WriteLine("Abstand-Test wird durchgeführt...");
@@ -258,7 +258,7 @@ namespace Baumprojekt
                     testSuccess = false;
                 }
             }
-            if (testSuccess == true) //Nutzerausgabe 
+            if (testSuccess == true) //Testausgabe für Erfolg des Sortierentests 
             {   
                 System.Console.WriteLine("\n======================");
                 System.Console.WriteLine("Sortieren-Test wird durchgeführt...");
@@ -348,7 +348,7 @@ namespace Baumprojekt
             Umkreis neuerUmkreis = new Umkreis();
             neuerUmkreis.Rechnen();//Aufruf Funktion Umkreis/Mittelpunkt brechnen
             //Ausgabe Mittlepunkt und Umkreis
-            System.Console.WriteLine("______________________\n----------------------\nMittelpunkt: {0}|{1} \nUmkreis: {2} \n",Umkreis.midwe,Umkreis.midns,Umkreis.abstand);
+            System.Console.WriteLine("______________________\nMittelpunkt: ({0}|{1}) \nUmkreis: {2} \n______________________\n",Umkreis.midwe,Umkreis.midns,Umkreis.abstand);
             neuerUmkreis.OutputCheck(); //Testing   
             tests.CheckAbstand(Umkreis.abstand);
             printCsv neueCsv = new printCsv();

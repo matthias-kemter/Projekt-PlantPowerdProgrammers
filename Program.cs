@@ -211,10 +211,10 @@ namespace Baumprojekt
         {
             if (abstand != 0)
             {
-                System.Console.WriteLine("Test bestanden!");
+                System.Console.WriteLine("Abstand-Test bestanden!");
             }else
             {
-                System.Console.WriteLine("Test fehlgeschlagen!");
+                System.Console.WriteLine("Abstand-Test fehlgeschlagen!");
             }
         }
         // Testen ob Sortieren erfolgreich
@@ -242,7 +242,7 @@ namespace Baumprojekt
                     System.Console.WriteLine("Sortieren-Test erfolgreich!");
                 }else
                 {
-                    System.Console.WriteLine("Test nicht erfolgreich!");
+                    System.Console.WriteLine("Sortieren-Test nicht erfolgreich!");
                 }
         }
     }
@@ -304,15 +304,17 @@ namespace Baumprojekt
                 }
             }
             // Test ob Sortieren in aufsteigender Reihenfolge funktioniert
-            Testen sortierenTest = new Testen();
-            sortierenTest.CheckIfAscending(BaumListe);
-            /*
+            Testen tests = new Testen();
+            tests.CheckIfAscending(BaumListe);
+            
+
+            
             // Fix object reference for non static field or method
             Umkreis neuerUmkreis = new Umkreis();
             neuerUmkreis.Rechnen();//Aufruf Funktion Umkreis/Mittelpunkt-brechnen
             System.Console.WriteLine("______________________\n----------------------\nMittelpunkt: {0}|{1} \nUmkreis: {2} \n",Umkreis.midwe,Umkreis.midns,Umkreis.abstand);
             neuerUmkreis.OutputCheck();    
-            */
+            tests.CheckAbstand(Umkreis.abstand);
         }
     }
 }

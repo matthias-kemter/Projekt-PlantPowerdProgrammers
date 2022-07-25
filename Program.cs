@@ -12,7 +12,7 @@ namespace Baumprojekt
         public int ObjektID {get; set;}
         public int ID {get; set;}
         public string ?Objektschluessel {get; set;}
-        public int Baumnummer {get; set;}
+        public string ?Baumnummer {get; set;}
         public string ?BaumartLatein {get; set;}
         public string ?BaumartDeutsch {get; set;}
         public int Pflanzdatum {get; set;}
@@ -31,7 +31,7 @@ namespace Baumprojekt
                 ObjektID = Convert.ToInt16(csvEntries[2]);
                 ID = Convert.ToInt32(csvEntries[3]);
                 Objektschluessel = csvEntries[4];
-                Baumnummer = Convert.ToInt32(csvEntries[5]);
+                Baumnummer = csvEntries[5];
                 BaumartLatein = csvEntries[6];
                 if (BaumartLatein == null) //Korrektur für nicht erkannte Baumart bzw. nicht in Csv angegeben
                 {
@@ -153,7 +153,8 @@ namespace Baumprojekt
                 southtree = list[49].Y_Koordinate;
                 midns =  (nordtree + southtree)/2;
 
-                for(int i = 0; i >= 49 ;i++){ //Array sortiert nach Norden
+                for(int i = 0; i >= 49 ;i++)
+                { //Array sortiert nach Norden
                     Nords [i]= list[0].X_Koordinate;
                 }
                 
@@ -191,7 +192,9 @@ namespace Baumprojekt
                 easttree = list[49].X_Koordinate;
                 midwe =  (westtree + easttree)/2;
 
-                for(int i = 0; i >= 49 ;i++){ //Array sortiert nach Westen
+                for(int i = 0; i >= 49 ;i++)
+                { 
+                    //Array sortiert nach Westen
                     Wests [i]= list[0].X_Koordinate;
                 }
                 
@@ -200,7 +203,8 @@ namespace Baumprojekt
 
             //Abstandsberechnug mit Hilfe des Satz von Pythagoras
             abstand =  0.0;
-            for(int i = 0; i >= 49; i++){
+            for(int i = 0; i >= 49; i++)
+            {
                 double testabstand = Math.Sqrt(Math.Pow((midwe-Wests[i]), 2)+Math.Pow((midns-Nords[i]),2));
                 //wurzel((b1−a1)^2+(b2−a2)^2)   //a mittelpunkt, b gesuchter punkt
                 if(testabstand > abstand){
@@ -238,7 +242,9 @@ namespace Baumprojekt
             // Es reicht hier nur die ersten 50 Einträge zu checken, da diese hinreichend sind um eine Aussage über die Funktionalität des Sortieralgorithmus zu treffen
             for (int i = 0; i < 49; i++)
             {
-                if (list[i].Pflanzdatum <= list[i+1].Pflanzdatum){ //Kontrolle ob Pflanzdatum aufsteigend sortiert ist
+                if (list[i].Pflanzdatum <= list[i+1].Pflanzdatum)
+                { 
+                    //Kontrolle ob Pflanzdatum aufsteigend sortiert ist
                     testSuccess = true;
                 }
                 else{
@@ -246,12 +252,12 @@ namespace Baumprojekt
                 }
             }
             if (testSuccess == true) //Nutzerausgabe 
-                {
-                    System.Console.WriteLine("Sortieren-Test erfolgreich!");
-                }else
-                {
-                    System.Console.WriteLine("Sortieren-Test nicht erfolgreich!");
-                }
+            {
+                System.Console.WriteLine("Sortieren-Test erfolgreich!");
+            }else
+            {
+                System.Console.WriteLine("Sortieren-Test nicht erfolgreich!");
+            }
         }
     }
     

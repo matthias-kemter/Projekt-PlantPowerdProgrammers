@@ -334,9 +334,9 @@ namespace Baumprojekt
         static void Main(string[] args)
         {
             var eingabe = 0;
-            System.Console.WriteLine("Willkommen im Projekt der PlantPowerdProgrammers!");
-            System.Console.WriteLine("=================================================");
+            System.Console.WriteLine("\nWillkommen im Projekt der PlantPowerdProgrammers!\n");
             System.Console.WriteLine("Geben Sie eine der folgenden Menüoptionen ein!");
+            System.Console.WriteLine("=================================================");
             System.Console.WriteLine("(1) Unsortierte Liste ausgeben");
             System.Console.WriteLine("(2) nach Pflanzdatum sortierte Liste ausgeben");
             System.Console.WriteLine("(3) nach Pflanzdatum sortierte CSV-Datei ausgeben");

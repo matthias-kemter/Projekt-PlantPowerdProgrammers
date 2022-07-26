@@ -333,9 +333,37 @@ namespace Baumprojekt
     {    
         static void Main(string[] args)
         {
-            // Dateiname von csv
+            var eingabe = 0;
+            System.Console.WriteLine("Willkommen im Projekt der PlantPowerdProgrammers!");
+            System.Console.WriteLine("=================================================");
+            System.Console.WriteLine("Geben Sie eine der folgenden Menüoptionen ein!");
+            System.Console.WriteLine("(1) Unsortierte Liste ausgeben");
+            System.Console.WriteLine("(2) nach Pflanzdatum sortierte Liste ausgeben");
+            System.Console.WriteLine("(3) nach Pflanzdatum sortierte CSV-Datei ausgeben");
+            System.Console.WriteLine("(4) Tests ausgeben");
+            System.Console.WriteLine("(5) Programm schließen");
+            System.Console.WriteLine("=================================================");
+            
+            // Exception Handling falls keine Zahl eingegeben wird
+            try
+            {   
+                ConsoleKeyInfo input = Console.ReadKey();
+                if (char.IsDigit(input.KeyChar))
+                {
+                    eingabe = int.Parse(input.KeyChar.ToString());
+                }else
+                {
+                    eingabe = 0;
+                }
+            }
+            catch (InvalidOperationException) //Exception-Handling
+            {
+                System.Console.WriteLine("Invalid Operation");
+            }
+            
 
-            string pathBaeumeCsv = @"./csv/Baeume.csv"; //./csv/baeume.csv
+            // Dateiname von csv
+            string pathBaeumeCsv = @"./csv/baeume.csv";
 
             // Liste von Bäumen erstellen
             List<Baeume> BaumListe = new List<Baeume>();
@@ -359,23 +387,44 @@ namespace Baumprojekt
                 }
                 catch (IndexOutOfRangeException) // wird ausgegeben, falls anzahlInListe nicht korrekt angegeben
                 {
-                    System.Console.WriteLine("Out Of Range");
+                    // System.Console.WriteLine("Out Of Range");
                 }
                 
-                //Hinweißkommentar
-                System.Console.WriteLine("\n##### Hier folgt die sortierte Liste: #####\n");
-                
-                //Aufruf sort-function
-                BaumListe = Sortieren.quicksortPflanzdatum(BaumListe);
-
-                int bc = 1; //Nummer zur Kontrolle der Ausgabe
-                foreach (Baeume aBaum in BaumListe)
+                if (eingabe == 1)
                 {
-                    if (bc>50){break;} //Abbrechen der Auflistung nach den ersten 50 Elementen
-                    System.Console.WriteLine("______________________\nBaumdaten:");
-                    System.Console.WriteLine("### {0} ###",bc); //Ausgabenummer
-                    bc ++;
-                    System.Console.WriteLine(aBaum.ToString()); //Ausgabe einzelner Baum
+                    int bc = 1;
+                    
+                    //Hinweißkommentar
+                    System.Console.WriteLine("\n##### UNSORTIERTE LISTE #####\n");
+                    foreach (Baeume aBaum in BaumListe)
+                        {
+
+                            if (bc>50){break;} //Abbrechen der Auflistung nach den ersten 50 Elementen
+                            System.Console.WriteLine("______________________\nBaumdaten:");
+                            System.Console.WriteLine("### {0} ###",bc); //Ausgabenummer
+                            bc ++;
+                            System.Console.WriteLine(aBaum.ToString()); //Ausgabe einzelner Baum
+                        }
+                }else
+                {
+                    if (eingabe == 2)
+                    {
+                        //Hinweißkommentar
+                        System.Console.WriteLine("\n##### SORTIERTE LISTE #####\n");
+
+                        //Aufruf sort-function
+                        BaumListe = Sortieren.quicksortPflanzdatum(BaumListe);
+
+                        int bc = 1; //Nummer zur Kontrolle der Ausgabe
+                        foreach (Baeume aBaum in BaumListe)
+                        {
+                            if (bc>50){break;} //Abbrechen der Auflistung nach den ersten 50 Elementen
+                            System.Console.WriteLine("______________________\nBaumdaten:");
+                            System.Console.WriteLine("### {0} ###",bc); //Ausgabenummer
+                            bc ++;
+                            System.Console.WriteLine(aBaum.ToString()); //Ausgabe einzelner Baum
+                        }
+                    }
                 }
             }
             
@@ -384,33 +433,45 @@ namespace Baumprojekt
             Umkreis neuerUmkreis = new Umkreis();
             neuerUmkreis.Rechnen();//Aufruf Funktion Umkreis/Mittelpunkt brechnen
 
-            // Tests
-            System.Console.WriteLine("\n======================");
-            System.Console.WriteLine("Ab hier beginnen die Tests!");
-            System.Console.WriteLine("======================");
+            if (eingabe == 4)
+            {  
+                // Tests
+                System.Console.WriteLine("\n======================");
+                System.Console.WriteLine("Ab hier beginnen die Tests!");
+                System.Console.WriteLine("======================");
 
-            //Ausgabe Mittlepunkt und Umkreis
-            System.Console.WriteLine("\n======================");
-            System.Console.WriteLine("Mittelpunkt und Umkreis werden getestet...\n");
-            System.Console.WriteLine("Mittelpunkt: ({0}|{1})",Umkreis.midwe,Umkreis.midns);
-            System.Console.WriteLine("Umkreis: {0}",Umkreis.abstand);
-            System.Console.WriteLine("======================");
+                //Ausgabe Mittlepunkt und Umkreis
+                System.Console.WriteLine("\n======================");
+                System.Console.WriteLine("Mittelpunkt und Umkreis werden getestet...\n");
+                System.Console.WriteLine("Mittelpunkt: ({0}|{1})",Umkreis.midwe,Umkreis.midns);
+                System.Console.WriteLine("Umkreis: {0}",Umkreis.abstand);
+                System.Console.WriteLine("======================");
+
+                // Testen Koordinaten und Abstand mit Output-Check
+                neuerUmkreis.OutputCheck(); //Testing   
+
+                // Klasse Testen instanziieren
+                Testen tests = new Testen();
+
+                // Test ob Sortieren in aufsteigender Reihenfolge funktioniert
+                tests.CheckIfAscending(BaumListe);
+
+                // Test ob Abstand zum Mittelpunkt korrekt ausgerechnet wird
+                tests.CheckAbstand(Umkreis.abstand);
+            }
             
-            // Testen Koordinaten und Abstand mit Output-Check
-            neuerUmkreis.OutputCheck(); //Testing   
-
-            // Klasse Testen instanziieren
-            Testen tests = new Testen();
-
-            // Test ob Sortieren in aufsteigender Reihenfolge funktioniert
-            tests.CheckIfAscending(BaumListe);
-
-            // Test ob Abstand zum Mittelpunkt korrekt ausgerechnet wird
-            tests.CheckAbstand(Umkreis.abstand);
-            
-            // CSV 'SortiertNachPflanzdatum.csv' wird erstellt
-            printCsv neueCsv = new printCsv();
-            neueCsv.print(BaumListe);
+            if (eingabe == 3)
+            {   
+                // Hinweiskommentar
+                System.Console.WriteLine("\nCSV-Datei wird erstellt und ausgegeben...");
+                // CSV 'SortiertNachPflanzdatum.csv' wird erstellt
+                printCsv neueCsv = new printCsv();
+                neueCsv.print(BaumListe);
+            }  
+            if (eingabe ==5)
+            {
+                System.Console.WriteLine("\nProgramm wird geschlossen...");
+            }      
         }
     }
 }//Hier ist das Ende eines wunderschönen Programmcodes.

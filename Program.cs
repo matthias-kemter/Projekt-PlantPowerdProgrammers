@@ -333,7 +333,7 @@ namespace Baumprojekt
     {    
         static void Main(string[] args)
         {
-            var eingabe = 0;
+            var eingabe = 0; //Nutzerinformationen für Eingabemöglichkeiten
             System.Console.WriteLine("\nWillkommen im Projekt der PlantPowerdProgrammers!\n");
             System.Console.WriteLine("Geben Sie eine der folgenden Menüoptionen ein!");
             System.Console.WriteLine("=================================================");

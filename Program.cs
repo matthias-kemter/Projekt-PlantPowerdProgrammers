@@ -387,14 +387,24 @@ namespace Baumprojekt
                 }
                 catch (IndexOutOfRangeException) // wird ausgegeben, falls anzahlInListe nicht korrekt angegeben
                 {
-                    System.Console.WriteLine("Out Of Range");
+                    // System.Console.WriteLine("Out Of Range");
                 }
                 
                 if (eingabe == 1)
                 {
+                    int bc = 1;
+                    
                     //Hinweißkommentar
                     System.Console.WriteLine("\n##### UNSORTIERTE LISTE #####\n");
-                    System.Console.WriteLine(BaumListe.ToString());
+                    foreach (Baeume aBaum in BaumListe)
+                        {
+
+                            if (bc>50){break;} //Abbrechen der Auflistung nach den ersten 50 Elementen
+                            System.Console.WriteLine("______________________\nBaumdaten:");
+                            System.Console.WriteLine("### {0} ###",bc); //Ausgabenummer
+                            bc ++;
+                            System.Console.WriteLine(aBaum.ToString()); //Ausgabe einzelner Baum
+                        }
                 }else
                 {
                     if (eingabe == 2)
@@ -451,14 +461,16 @@ namespace Baumprojekt
             }
             
             if (eingabe == 3)
-            {
+            {   
+                // Hinweiskommentar
+                System.Console.WriteLine("\nCSV-Datei wird erstellt und ausgegeben...");
                 // CSV 'SortiertNachPflanzdatum.csv' wird erstellt
                 printCsv neueCsv = new printCsv();
                 neueCsv.print(BaumListe);
             }  
             if (eingabe ==5)
             {
-                System.Console.WriteLine("Programm wird geschlossen...");
+                System.Console.WriteLine("\nProgramm wird geschlossen...");
             }      
         }
     }

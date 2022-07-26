@@ -334,9 +334,9 @@ namespace Baumprojekt
         static void Main(string[] args)
         {
             var eingabe = 0;
-            System.Console.WriteLine("Willkommen im Projekt der PlantPowerdProgrammers!");
-            System.Console.WriteLine("=================================================");
+            System.Console.WriteLine("\nWillkommen im Projekt der PlantPowerdProgrammers!\n");
             System.Console.WriteLine("Geben Sie eine der folgenden Menüoptionen ein!");
+            System.Console.WriteLine("=================================================");
             System.Console.WriteLine("(1) Unsortierte Liste ausgeben");
             System.Console.WriteLine("(2) nach Pflanzdatum sortierte Liste ausgeben");
             System.Console.WriteLine("(3) nach Pflanzdatum sortierte CSV-Datei ausgeben");
@@ -344,7 +344,7 @@ namespace Baumprojekt
             System.Console.WriteLine("(5) Programm schließen");
             System.Console.WriteLine("=================================================");
             
-            // Exception Handling falls keine Zahl eingegeben wird
+            // Benutzereingabe einlesen und auf eingabe speichern
             try
             {   
                 ConsoleKeyInfo input = Console.ReadKey();
@@ -356,9 +356,9 @@ namespace Baumprojekt
                     eingabe = 0;
                 }
             }
-            catch (InvalidOperationException) //Exception-Handling
+            catch (InvalidOperationException) //wenn keine Zahl eingegeben wird, dann schließt das Programm
             {
-                System.Console.WriteLine("Invalid Operation");
+                
             }
             
 
@@ -390,6 +390,7 @@ namespace Baumprojekt
                     // System.Console.WriteLine("Out Of Range");
                 }
                 
+                // Falls Menüpunkt 1 gewählt wurde wird die unsortierte Liste ausgegeben
                 if (eingabe == 1)
                 {
                     int bc = 1;
@@ -406,7 +407,8 @@ namespace Baumprojekt
                             System.Console.WriteLine(aBaum.ToString()); //Ausgabe einzelner Baum
                         }
                 }else
-                {
+                {   
+                    // Analog für Menüpunkt 2 und der sortierten Liste
                     if (eingabe == 2)
                     {
                         //Hinweißkommentar
@@ -433,6 +435,7 @@ namespace Baumprojekt
             Umkreis neuerUmkreis = new Umkreis();
             neuerUmkreis.Rechnen();//Aufruf Funktion Umkreis/Mittelpunkt brechnen
 
+            // Falls die Tests ausgegeben werden sollen
             if (eingabe == 4)
             {  
                 // Tests
@@ -460,6 +463,7 @@ namespace Baumprojekt
                 tests.CheckAbstand(Umkreis.abstand);
             }
             
+            // Falls CSV Dateien ausgegeben werden sollen
             if (eingabe == 3)
             {   
                 // Hinweiskommentar
@@ -467,7 +471,9 @@ namespace Baumprojekt
                 // CSV 'SortiertNachPflanzdatum.csv' wird erstellt
                 printCsv neueCsv = new printCsv();
                 neueCsv.print(BaumListe);
-            }  
+            }
+
+            // Falls eine 5 eingegeben wurde und sich das Programm einfach schließen soll
             if (eingabe ==5)
             {
                 System.Console.WriteLine("\nProgramm wird geschlossen...");
